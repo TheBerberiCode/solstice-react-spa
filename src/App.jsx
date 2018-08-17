@@ -51,7 +51,6 @@ class App extends Component {
       this.sortData();
 
     const { bills, currentPage, billsPerPage } = this.state;
-    // Logic for displaying todos
     const indexOfLastBill = currentPage * billsPerPage;
     const indexOfFirstBill = indexOfLastBill - billsPerPage;
     const currentBills = bills.slice(indexOfFirstBill, indexOfLastBill);
