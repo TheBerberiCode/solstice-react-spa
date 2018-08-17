@@ -26,3 +26,37 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.app-container{
+    background: white;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+
+}
+
+html, body {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1.2em;
+    max-width: 1300px;
+    margin: auto;
+}
+
+#page-numbers {
+  list-style: none;
+  display: flex;
+}
+
+#page-numbers > li {
+  margin-right: 0.3em;
+  color: blue;
+  user-select: none;
+  cursor: pointer;
+}
+
+#rowC{display:flex; flex-direction:column; }
+
+canvas{
+    height: 22px;
+    
+}

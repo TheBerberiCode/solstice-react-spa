@@ -12,5 +12,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },"dependencies": {
+    "babel-preset-stage-1": "^6.1.18",
+    "chart.js": "^2.7.2",
+    "lodash": "^3.10.1",
+    "react": "^16.2.0",
+    "react-chartjs-2": "^2.7.4",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^2.0.1"
   }
+    
 }
