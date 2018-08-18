@@ -112,7 +112,6 @@ class App extends Component {
 </div>
     ]});
 
-    // Logic for displaying page numbers
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(bills.length / billsPerPage); i++) {
       pageNumbers.push(i);
@@ -135,7 +134,7 @@ class App extends Component {
       <div>
             
         <ul>
-            <nav className="navbar navbar-light bg-light">
+        <nav className="navbar navbar-light bg-light">
   <a className="navbar-brand" href="#"> <h2>Solstice Utility Bill</h2></a>
 </nav>
           {renderBills}
