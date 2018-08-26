@@ -14,12 +14,14 @@ class App extends Component {
         months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     };
       
-    fetch('https://api.myjson.com/bins/125dgk')
-        .then(response => response.json())
-        .then(data =>  this.setState({"bills":data})).catch(error => console.log(error))
-      
     this.handleClick = this.handleClick.bind(this);
   }
+    
+    componentDidMount(){
+      fetch('https://api.myjson.com/bins/125dgk')
+        .then(response => response.json())
+        .then(data =>  this.setState({"bills":data})).catch(error => console.log(error))  
+    }
 
   handleClick(event) {
     this.setState({
@@ -41,6 +43,7 @@ class App extends Component {
             }
                 
         }
+        
         this.state.savings = arrangedSavings;
         this.state.billsPaid = amountPaid;
         
