@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Chart from './Chart';
 
 class App extends Component {
   constructor() {
-    super();
-    this.state = {
-      bills: [],
+        super();
+        this.state = {
+        billsPaid: [],
+        bills: [],
         savings: [],
-      currentPage: 1,
-      billsPerPage: 1,
+        currentPage: 1,
+        billsPerPage: 1,
         months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     };
       
     this.handleClick = this.handleClick.bind(this);
   }
     
-    componentDidMount(){
-      fetch('https://api.myjson.com/bins/125dgk')
+    componentDidMount(){   
+        fetch('https://api.myjson.com/bins/125dgk')
         .then(response => response.json())
-        .then(data =>  this.setState({"bills":data})).catch(error => console.log(error))  
+        .then(bills =>  {
+            this.setState({bills});
+            this.sortData(bills);})
+        .catch(error => console.log(error));
+
     }
 
   handleClick(event) {
@@ -31,10 +35,12 @@ class App extends Component {
     
     
         
-    sortData(){
-        let data = this.state.bills;
+ sortData(bills){
+        let data = bills;
         let arrangedSavings = [];
         let amountPaid = [];
+        
+        console.log("data: ",data);
         
         for(let i=data.length-1;i>=0;i--){
             if(data[i].savings !== null){
@@ -44,25 +50,29 @@ class App extends Component {
                 
         }
         
-        this.state.savings = arrangedSavings;
-        this.state.billsPaid = amountPaid;
+        
+     
+        this.setState({"savings": arrangedSavings});
+        console.log("arranged savings: ",arrangedSavings);
+        this.setState({"billsPaid": amountPaid});
         
     }
         
 
   render() {
-      this.sortData();
-
+      
     const { bills, currentPage, billsPerPage } = this.state;
     const indexOfLastBill = currentPage * billsPerPage;
+      console.log('Last:'+indexOfLastBill);
     const indexOfFirstBill = indexOfLastBill - billsPerPage;
+      console.log('First:'+indexOfFirstBill);
     const currentBills = bills.slice(indexOfFirstBill, indexOfLastBill);
 
-    const renderBills = currentBills.map((bill) => {
+    const renderBills = currentBills.map((bill,index) => {
       return [
           
           
-        <div className="row">
+        <div className="row" key = {index}>
     <div className="col-sm-6">
         <div className="card">
           <div className="card-body">
@@ -123,9 +133,9 @@ class App extends Component {
     const renderPageNumbers = pageNumbers.map(number => {
       return (
         <li
-          key={number}
-          id={number}
-          onClick={this.handleClick}
+            key={number}
+            id={number}
+            onClick={this.handleClick}
             className="page-link"
         >
           {number}
@@ -138,7 +148,7 @@ class App extends Component {
             
         <ul>
         <nav className="navbar navbar-light bg-light">
-  <a className="navbar-brand" href="#"> <h2>Solstice Utility Bill</h2></a>
+  <a className="navbar-brand" href="/"> <h2>Solstice Utility Bill</h2></a>
 </nav>
           {renderBills}
             <br></br>

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "utility bill",
+  "name": "Utility Bill Data",
   "icons": [
     {
       "src": "favicon.ico",
