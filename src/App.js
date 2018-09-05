@@ -14,7 +14,6 @@ class App extends Component {
         months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     };
       
-    this.handleClick = this.handleClick.bind(this);
   }
     
     componentDidMount(){   
@@ -27,7 +26,7 @@ class App extends Component {
 
     }
 
-  handleClick(event) {
+  handleClick = (event) => {
     this.setState({
       currentPage: Number(event.target.id)
     });
@@ -53,7 +52,6 @@ class App extends Component {
         
      
         this.setState({"savings": arrangedSavings});
-        console.log("arranged savings: ",arrangedSavings);
         this.setState({"billsPaid": amountPaid});
         
     }
